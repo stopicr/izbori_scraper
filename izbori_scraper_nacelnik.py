@@ -81,10 +81,19 @@ def rezultati(URL, table):
 #Ponavljanje koda za svaku opstinu
 URL = 'https://www.izbori.ba/Rezultati_izbora/?resId=27&langId=1#/8/1/0'
 
+
+#TODO: srediti
 tabela = rezultati(URL, data)
+procenti = tabela[1:,7]
+procenti1 = procenti.astype(np.float)
+procenti1 = procenti1/100
+simbol = np.array("%")
+procenti1 = np.r_[simbol, procenti1]
+tabela = tabela[:,:6]
+tabela = np.c_[tabela, procenti1]
 
 #export tabele u csv file
-pd.DataFrame(tabela).to_csv("nacelnik.csv")
+# pd.DataFrame(tabela).to_csv("nacelnik.csv")
 
 
 
